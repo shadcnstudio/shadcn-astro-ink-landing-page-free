@@ -1,5 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import '@/styles/global.css'
+
+import Layout from '@/layouts/Layout.astro'
+
+import ThemeToggle from '@/components/theme-toggle'
 
 // Page-specific SEO configuration
 const pageTitle = 'Master Astro Template - Build Modern, Fast Websites'
@@ -30,28 +34,29 @@ const schema = {
 
 <Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
   <!-- Main Content with semantic HTML -->
-  <main id='main-content' class='flex-1 w-full'>
+  <ThemeToggle client:load />
+  <main id='main-content' class='w-full flex-1'>
     <!-- Hero Section -->
     <section class='container mx-auto px-4 py-16 md:py-24 lg:py-32' aria-labelledby='hero-heading'>
-      <div class='max-w-4xl mx-auto text-center'>
-        <h1 id='hero-heading' class='text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6'>
+      <div class='mx-auto max-w-4xl text-center'>
+        <h1 id='hero-heading' class='mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl'>
           Build Lightning-Fast Websites with Astro
         </h1>
-        <p class='text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed'>
+        <p class='text-muted-foreground mb-8 text-lg leading-relaxed md:text-xl'>
           A production-ready template combining Astro's performance, shadcn/ui's beautiful components, and Tailwind
           CSS's utility-first approach. Start building your next project with confidence.
         </p>
-        <div class='flex flex-col sm:flex-row gap-4 justify-center items-center'>
+        <div class='flex flex-col items-center justify-center gap-4 sm:flex-row'>
           <a
             href='#features'
-            class='inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+            class='bg-primary hover:bg-primary/90 focus:ring-primary inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium text-white transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none'
             aria-label='Explore features of Master Astro Template'
           >
             Get Started
           </a>
           <a
             href='https://github.com/yourusername/master-astro-template'
-            class='inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-md text-primary bg-secondary hover:bg-secondary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+            class='text-primary bg-secondary hover:bg-secondary/80 focus:ring-primary inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none'
             aria-label='View source code on GitHub'
             rel='noopener noreferrer'
             target='_blank'
@@ -64,46 +69,46 @@ const schema = {
 
     <!-- Features Section -->
     <section id='features' class='container mx-auto px-4 py-16 md:py-24' aria-labelledby='features-heading'>
-      <h2 id='features-heading' class='text-3xl md:text-4xl font-bold text-center mb-12'>Why Choose This Template?</h2>
-      <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto'>
-        <article class='p-6 rounded-lg border bg-card text-card-foreground shadow-sm'>
-          <h3 class='text-xl font-semibold mb-3'>⚡ Lightning Fast</h3>
+      <h2 id='features-heading' class='mb-12 text-center text-3xl font-bold md:text-4xl'>Why Choose This Template?</h2>
+      <div class='mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3'>
+        <article class='bg-card text-card-foreground rounded-lg border p-6 shadow-sm'>
+          <h3 class='mb-3 text-xl font-semibold'>⚡ Lightning Fast</h3>
           <p class='text-muted-foreground'>
             Built with Astro's island architecture for optimal performance. Zero JavaScript by default, ship only what
             you need.
           </p>
         </article>
 
-        <article class='p-6 rounded-lg border bg-card text-card-foreground shadow-sm'>
-          <h3 class='text-xl font-semibold mb-3'>🎨 Beautiful UI</h3>
+        <article class='bg-card text-card-foreground rounded-lg border p-6 shadow-sm'>
+          <h3 class='mb-3 text-xl font-semibold'>🎨 Beautiful UI</h3>
           <p class='text-muted-foreground'>
             Leverage shadcn/ui components with Tailwind CSS for stunning, accessible interfaces out of the box.
           </p>
         </article>
 
-        <article class='p-6 rounded-lg border bg-card text-card-foreground shadow-sm'>
-          <h3 class='text-xl font-semibold mb-3'>🔍 SEO Optimized</h3>
+        <article class='bg-card text-card-foreground rounded-lg border p-6 shadow-sm'>
+          <h3 class='mb-3 text-xl font-semibold'>🔍 SEO Optimized</h3>
           <p class='text-muted-foreground'>
             Comprehensive SEO implementation with metadata, structured data, and semantic HTML for maximum visibility.
           </p>
         </article>
 
-        <article class='p-6 rounded-lg border bg-card text-card-foreground shadow-sm'>
-          <h3 class='text-xl font-semibold mb-3'>♿ Accessible</h3>
+        <article class='bg-card text-card-foreground rounded-lg border p-6 shadow-sm'>
+          <h3 class='mb-3 text-xl font-semibold'>♿ Accessible</h3>
           <p class='text-muted-foreground'>
             Built with accessibility in mind. WCAG compliant components and proper ARIA labels throughout.
           </p>
         </article>
 
-        <article class='p-6 rounded-lg border bg-card text-card-foreground shadow-sm'>
-          <h3 class='text-xl font-semibold mb-3'>📱 Responsive</h3>
+        <article class='bg-card text-card-foreground rounded-lg border p-6 shadow-sm'>
+          <h3 class='mb-3 text-xl font-semibold'>📱 Responsive</h3>
           <p class='text-muted-foreground'>
             Mobile-first design that looks perfect on any device. Tested across all major browsers and screen sizes.
           </p>
         </article>
 
-        <article class='p-6 rounded-lg border bg-card text-card-foreground shadow-sm'>
-          <h3 class='text-xl font-semibold mb-3'>🛠️ Developer Friendly</h3>
+        <article class='bg-card text-card-foreground rounded-lg border p-6 shadow-sm'>
+          <h3 class='mb-3 text-xl font-semibold'>🛠️ Developer Friendly</h3>
           <p class='text-muted-foreground'>
             TypeScript support, ESLint configuration, and modern tooling for an excellent development experience.
           </p>
@@ -113,14 +118,14 @@ const schema = {
 
     <!-- CTA Section -->
     <section class='container mx-auto px-4 py-16 md:py-24' aria-labelledby='cta-heading'>
-      <div class='max-w-3xl mx-auto text-center p-8 md:p-12 rounded-lg bg-muted'>
-        <h2 id='cta-heading' class='text-3xl md:text-4xl font-bold mb-4'>Ready to Build Something Amazing?</h2>
-        <p class='text-lg text-muted-foreground mb-8'>
+      <div class='bg-muted mx-auto max-w-3xl rounded-lg p-8 text-center md:p-12'>
+        <h2 id='cta-heading' class='mb-4 text-3xl font-bold md:text-4xl'>Ready to Build Something Amazing?</h2>
+        <p class='text-muted-foreground mb-8 text-lg'>
           Start your next project with a solid foundation. Clone the repository and launch your site in minutes.
         </p>
         <a
           href='https://github.com/yourusername/master-astro-template'
-          class='inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+          class='bg-primary hover:bg-primary/90 focus:ring-primary inline-flex items-center justify-center rounded-md px-8 py-4 text-lg font-medium text-white transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none'
           aria-label='Get started with Master Astro Template'
           rel='noopener noreferrer'
           target='_blank'
@@ -134,8 +139,8 @@ const schema = {
   <!-- Footer with semantic HTML -->
   <footer class='w-full border-t' role='contentinfo'>
     <div class='container mx-auto px-4 py-8'>
-      <div class='flex flex-col md:flex-row justify-between items-center gap-4'>
-        <p class='text-sm text-muted-foreground'>
+      <div class='flex flex-col items-center justify-between gap-4 md:flex-row'>
+        <p class='text-muted-foreground text-sm'>
           © {new Date().getFullYear()} Master Astro Template. Built with <span aria-label='love'>❤️</span> using Astro.
         </p>
         <nav aria-label='Footer navigation'>
@@ -143,7 +148,7 @@ const schema = {
             <li>
               <a
                 href='/privacy'
-                class='text-sm text-muted-foreground hover:text-foreground transition-colors'
+                class='text-muted-foreground hover:text-foreground text-sm transition-colors'
                 aria-label='View privacy policy'
               >
                 Privacy
@@ -152,7 +157,7 @@ const schema = {
             <li>
               <a
                 href='/terms'
-                class='text-sm text-muted-foreground hover:text-foreground transition-colors'
+                class='text-muted-foreground hover:text-foreground text-sm transition-colors'
                 aria-label='View terms of service'
               >
                 Terms
@@ -161,7 +166,7 @@ const schema = {
             <li>
               <a
                 href='/contact'
-                class='text-sm text-muted-foreground hover:text-foreground transition-colors'
+                class='text-muted-foreground hover:text-foreground text-sm transition-colors'
                 aria-label='Contact us'
               >
                 Contact

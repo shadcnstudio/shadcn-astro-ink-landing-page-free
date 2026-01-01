@@ -61,7 +61,7 @@
 - [Credits 🤘](#credits-)
 - [License ©](#license-)
 - [Useful Links 🎁](#useful-links-)
-- [Social Media :earth\_africa:](#social-media-earth_africa)
+- [Social Media :earth_africa:](#social-media-earth_africa)
 
 ---
 
