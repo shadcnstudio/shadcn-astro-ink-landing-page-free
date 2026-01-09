@@ -1,12 +1,11 @@
 ---
-import Layout from '@/layouts/Layout.astro'
-
 import NotFound from '@/components/not-found'
+import BlankLayout from '@/layouts/BlankLayout.astro'
 
 const pageTitle = '404 - Page Not Found'
 const pageDescription = 'The page you are looking for does not exist or has been moved.'
 ---
 
-<Layout title={pageTitle} description={pageDescription} noindex nofollow>
+<BlankLayout title={pageTitle} description={pageDescription} noindex nofollow>
   <NotFound />
-</Layout>
+</BlankLayout>
