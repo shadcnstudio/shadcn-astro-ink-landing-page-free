@@ -46,10 +46,10 @@ export const SITE_METADATA = {
     icon: [
       { url: '/favicon.ico', sizes: '48x48' },
       { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/favicon-512x512.png', sizes: '512x512', type: 'image/png' }
+      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon/favicon-512x512.png', sizes: '512x512', type: 'image/png' }
     ],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
     shortcut: [{ url: '/favicon.ico' }]
@@ -63,7 +63,7 @@ export const SITE_METADATA = {
       'A professional Astro template built with shadcn/ui, Tailwind CSS & React. Optimized for performance and SEO.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'shadcn Studio - Modern Astro Template',
@@ -78,7 +78,7 @@ export const SITE_METADATA = {
     title: 'shadcn Studio - Modern Astro Template',
     description:
       'A professional Astro template built with shadcn/ui, Tailwind CSS & React. Optimized for performance and SEO.',
-    images: ['/og-image.png']
+    images: ['/images/og-image.png']
   },
   verification: {
     google: '', // Add your Google verification code
@@ -100,7 +100,7 @@ export const COMPANY_INFO = {
   name: 'shadcn Studio',
   legalName: 'shadcn Studio Inc.',
   url: SITE_URL,
-  logo: `/site-logo.png`,
+  logo: `/images/site-logo.png`,
   foundingDate: '2024',
   address: {
     streetAddress: '123 Web Dev Street',
