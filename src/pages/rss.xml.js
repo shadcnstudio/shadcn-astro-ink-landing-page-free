@@ -3,7 +3,16 @@ import { getCollection } from 'astro:content'
 import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts'
 
 export async function GET(context) {
-  const posts = await getCollection('blog')
+  let posts = []
+
+  try {
+    posts = await getCollection('blog')
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    // Collection is empty or doesn't exist
+    console.log('No blog posts found, generating empty RSS feed')
+  }
+
   const publishedPosts = posts.filter(post => !post.data.draft)
 
   return rss({
