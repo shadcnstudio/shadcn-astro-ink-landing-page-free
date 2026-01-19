@@ -34,7 +34,7 @@ jobs:
           echo "🤖 Configuring site for demo deployment..."
 
           # Set production site URL
-          SITE_URL="https://shadcn-astro-{your template name}-landing-page.vercel.app/"
+          SITE_URL="https://shadcn-astro-ink-landing-page.vercel.app/"
           echo "🌐 Setting site URL to: $SITE_URL"
 
           # Update astro.config.mjs site URL

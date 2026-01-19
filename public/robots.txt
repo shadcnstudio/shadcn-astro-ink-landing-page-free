@@ -19,7 +19,7 @@ Allow: /*.css$
 Allow: /*.js$
 
 # Sitemap location
-Sitemap: https://shadcn-astro-ink-landing-page.vercel.app/sitemap.xml
+Sitemap: https://yourdomain.com/sitemap-index.xml
 
 # Specific bot configurations
 User-agent: Googlebot
