@@ -45,7 +45,7 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
         <a
           href={`/blog/${post.slug}`}
           key={post.id}
-          className='h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300 hover:shadow-md'
+          className='group h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300 hover:shadow-md'
           onClick={e => {
             const target = e.target as HTMLElement
 
@@ -61,7 +61,7 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
                 <img
                   src={post.imageUrl}
                   alt={post.imageAlt}
-                  className='h-59.5 w-full object-cover transition-transform duration-300 hover:scale-105'
+                  className='h-59.5 w-full object-cover transition-transform duration-300 group-hover:scale-105'
                 />
               </div>
               <div className='flex items-center justify-between gap-1.5'>
