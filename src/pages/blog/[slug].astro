@@ -102,7 +102,7 @@ const schema = {
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbLink href='/blog'>Blog</BreadcrumbLink>
+                    <BreadcrumbLink href='/#categories'>Blog</BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
@@ -141,11 +141,7 @@ const schema = {
             {
               entry.data.imageUrl && (
                 <div>
-                  <img
-                    src={entry.data.imageUrl}
-                    alt={entry.data.title}
-                    class='max-h-148 w-full rounded-xl object-cover'
-                  />
+                  <img src={entry.data.imageUrl} alt={entry.data.title} class='max-h-148 w-full rounded-xl' />
                 </div>
               )
             }

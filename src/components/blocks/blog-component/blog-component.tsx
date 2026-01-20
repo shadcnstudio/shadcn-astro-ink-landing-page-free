@@ -42,54 +42,65 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
   return (
     <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
       {posts.map(post => (
-        <Card
+        <a
+          href={`/blog/${post.slug}`}
           key={post.id}
           className='h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300 hover:shadow-md'
+          onClick={e => {
+            const target = e.target as HTMLElement
+
+            if (target.closest('.badge')) {
+              e.preventDefault()
+              e.stopPropagation()
+            }
+          }}
         >
-          <CardContent className='space-y-3.5'>
-            <div className='mb-6 overflow-hidden rounded-lg sm:mb-12'>
-              <a href={`/blog/${post.slug}`}>
+          <Card>
+            <CardContent className='space-y-3.5'>
+              <div className='mb-6 overflow-hidden rounded-lg sm:mb-12'>
                 <img
                   src={post.imageUrl}
                   alt={post.imageAlt}
                   className='h-59.5 w-full object-cover transition-transform duration-300 hover:scale-105'
                 />
-              </a>
-            </div>
-            <div className='flex items-center justify-between gap-1.5'>
-              <div className='text-muted-foreground flex items-center gap-1.5'>
-                <CalendarDaysIcon className='size-6' />
-                <span>{post.pubDate.toLocaleDateString()}</span>
               </div>
-              <Badge
-                className='bg-primary/10 text-primary rounded-full border-0 text-sm'
-                onClick={e => {
-                  e.stopPropagation()
-                  onCategoryClick(post.category)
-                }}
-              >
-                <a href={`/#category-${post.category}`}>{post.category}</a>
-              </Badge>
-            </div>
-            <h3 className='line-clamp-2 text-lg font-medium md:text-xl'>
-              <a href={`/blog/${post.slug}`}>{post.title}</a>
-            </h3>
-            <p className='text-muted-foreground line-clamp-2'>{post.description}</p>
-            <div className='flex items-center justify-between'>
-              <span className='text-sm font-medium'>{post.author}</span>
-              <Button
-                size='icon'
-                className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground border group-hover:border-transparent hover:border-transparent'
-                asChild
-              >
-                <a href={`/blog/${post.slug}`}>
+              <div className='flex items-center justify-between gap-1.5'>
+                <div className='text-muted-foreground flex items-center gap-1.5'>
+                  <CalendarDaysIcon className='size-6' />
+                  <p className='font-medium'>
+                    {new Date(post.pubDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </p>
+                </div>
+                <Badge
+                  className='bg-primary/10 text-primary badge rounded-full border-0 text-sm'
+                  onClick={e => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    onCategoryClick(post.category)
+                  }}
+                >
+                  {post.category}
+                </Badge>
+              </div>
+              <h3 className='line-clamp-2 text-lg font-medium md:text-xl'>{post.title}</h3>
+              <p className='text-muted-foreground line-clamp-2'>{post.description}</p>
+              <div className='flex items-center justify-between'>
+                <span className='text-sm font-medium'>{post.author}</span>
+                <Button
+                  size='icon'
+                  className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground border group-hover:border-transparent hover:border-transparent'
+                >
                   <ArrowRightIcon className='size-4 -rotate-45' />
                   <span className='sr-only'>Read more: {post.title}</span>
-                </a>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </a>
       ))}
     </div>
   )

@@ -34,54 +34,56 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
 
         <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
           {featuredPosts.map((item, index) => (
-            <Card key={`${item.author}-${index}`} className='group cursor-pointer py-0 shadow-none'>
-              <CardContent className='grid grid-cols-1 px-0 xl:grid-cols-2'>
-                <div className='p-6'>
-                  <div className='h-59.5 w-full overflow-hidden rounded-lg'>
-                    <a href={`/blog/${item.slug}`}>
+            <a href={`/blog/${item.slug}`} key={`${item.author}-${index}`} className='group'>
+              <Card className='cursor-pointer py-0 shadow-none'>
+                <CardContent className='grid grid-cols-1 px-0 xl:grid-cols-2'>
+                  <div className='p-6'>
+                    <div className='h-59.5 w-full overflow-hidden rounded-lg'>
                       <img
                         src={item.imageUrl}
                         alt={item.imageAlt}
                         className='w-full object-cover transition-transform duration-300 group-hover:scale-105'
                       />
-                    </a>
-                  </div>
-                </div>
-                <div className='flex flex-col justify-center gap-3 p-6'>
-                  <div className='flex items-center gap-1.5 py-1'>
-                    <div className='text-muted-foreground flex grow items-center gap-1.5'>
-                      <CalendarDaysIcon className='size-6' />
-                      <p>{item.pubDate.toLocaleDateString()}</p>
                     </div>
-                    <Badge
-                      className='bg-primary/10 text-primary cursor-pointer border-0 text-sm'
-                      onClick={e => {
-                        e.stopPropagation()
-                      }}
-                    >
-                      <a href={`/#category-${item.category}`}>{item.category}</a>
-                    </Badge>
                   </div>
-                  <h3 className='text-xl font-medium'>
-                    <a href={`/blog/${item.slug}`}>{item.title}</a>
-                  </h3>
+                  <div className='flex flex-col justify-center gap-3 p-6'>
+                    <div className='flex items-center gap-1.5 py-1'>
+                      <div className='text-muted-foreground flex grow items-center gap-1.5'>
+                        <CalendarDaysIcon className='size-6' />
+                        <p className='font-medium'>
+                          {new Date(item.pubDate).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                      <Badge
+                        className='bg-primary/10 text-primary cursor-pointer border-0 text-sm'
+                        onClick={e => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                        }}
+                      >
+                        {item.category}
+                      </Badge>
+                    </div>
+                    <h3 className='text-xl font-medium'>{item.title}</h3>
 
-                  <p className='text-muted-foreground'>{item.description}</p>
-                  <div className='flex w-full items-center justify-between gap-1 py-1'>
-                    <span className='cursor-pointer text-sm font-medium'>{item.author}</span>
-                    <Button
-                      size='icon'
-                      className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground border group-hover:border-transparent hover:border-transparent'
-                      asChild
-                    >
-                      <a href={`/blog/${item.slug}`}>
+                    <p className='text-muted-foreground'>{item.description}</p>
+                    <div className='flex w-full items-center justify-between gap-1 py-1'>
+                      <span className='cursor-pointer text-sm font-medium'>{item.author}</span>
+                      <Button
+                        size='icon'
+                        className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground border group-hover:border-transparent hover:border-transparent'
+                      >
                         <ArrowUpRightIcon />
-                      </a>
-                    </Button>
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </a>
           ))}
         </div>
       </div>
