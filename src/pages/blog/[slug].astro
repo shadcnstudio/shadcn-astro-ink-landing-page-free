@@ -18,6 +18,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
 import { mdxComponents } from '@/components/mdx-components'
 import Blog from '@/components/blocks/blog-related-post/blog-related-post'
+import CTA from '@/components/blocks/cta-section/cta-section'
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog')
@@ -185,38 +186,6 @@ const schema = {
 
     <Blog relatedPosts={formattedRelatedPosts} />
 
-    <!-- CTA Section -->
-    <section class='bg-muted py-8 sm:py-16 lg:py-24'>
-      <div class='container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8'>
-        <div class='bg-card rounded-lg border'>
-          <div class='p-6'>
-            <div class='grid grid-cols-1 gap-6 lg:grid-cols-2'>
-              <div class='relative h-64 sm:h-80 lg:h-auto'>
-                <img src='/images/cta.webp' alt='Workspace with laptop' class='h-full w-full rounded-lg object-cover' />
-              </div>
-              <div class='flex flex-col justify-between gap-4 p-4'>
-                <h2 class='text-xl leading-tight font-semibold lg:text-2xl'>
-                  Explore insights, stories, and strategies that help you build better products every day.
-                </h2>
-                <div>
-                  <p class='text-muted-foreground mb-3 text-base'>
-                    Join 1,000,000+ subscribers receiving expert tips on earning more, investing smarter and living
-                    better, all in our free newsletter.
-                  </p>
-                  <form class='gap-3 py-1 max-sm:space-y-2 sm:flex sm:flex-row'>
-                    <input
-                      type='email'
-                      placeholder='Your email'
-                      class='bg-background h-10 flex-1 rounded-md border px-3 text-base'
-                    />
-                    <Button size='lg' className='text-base max-sm:w-full' type='submit'> Subscribe </Button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CTA />
   </main>
 </Layout>
