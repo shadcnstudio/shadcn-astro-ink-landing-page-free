@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { MailIcon, MenuIcon } from 'lucide-react'
 
 import ThemeToggle from '@/components/layout/theme-toggle'
@@ -24,6 +23,7 @@ type HeaderProps = {
 
 const Header = ({ navigationData, className }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,8 +37,6 @@ const Header = ({ navigationData, className }: HeaderProps) => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-
-  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,6 +67,21 @@ const Header = ({ navigationData, className }: HeaderProps) => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [activeSection])
+
+  useLayoutEffect(() => {
+    // Update activeSection based on the current route using window.location.pathname
+    const path = window.location.pathname
+
+    setTimeout(() => {
+      if (path === '/' || path === '/#home') {
+        setActiveSection('home')
+      } else if (path.startsWith('/blog/')) {
+        setActiveSection('blog')
+      } else {
+        setActiveSection('') // Default case for other routes
+      }
+    }, 0)
+  }, [])
 
   return (
     <header
