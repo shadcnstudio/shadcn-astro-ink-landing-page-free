@@ -170,3 +170,21 @@
     letter-spacing: var(--tracking-normal);
   }
 }
+
+.prose {
+  h2 {
+    @apply text-foreground mt-16 mb-4 scroll-mt-20 text-2xl font-semibold;
+  }
+  h3 {
+    @apply text-foreground mb-4 scroll-mt-20 text-xl font-medium;
+  }
+  p {
+    @apply text-muted-foreground mb-4 text-xl;
+  }
+  ul {
+    @apply mb-4 list-inside list-disc space-y-2 pl-2;
+  }
+  li {
+    @apply text-muted-foreground text-xl;
+  }
+}

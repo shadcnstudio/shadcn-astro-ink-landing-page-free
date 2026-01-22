@@ -16,7 +16,6 @@ import { AuthorMetadata } from '@/components/AuthorAvatar'
 import { getRelatedPosts, getPostNavigation, calculateReadTime } from '@/utils/blog'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
-import { mdxComponents } from '@/components/mdx-components'
 import Blog from '@/components/blocks/blog-related-post/blog-related-post'
 import CTA from '@/components/blocks/cta-section/cta-section'
 
@@ -148,8 +147,8 @@ const schema = {
             }
 
             <!-- Article Content -->
-            <article id='content' class='prose prose-lg dark:prose-invert max-w-none'>
-              <Content components={mdxComponents} />
+            <article id='content' class='prose dark:prose-invert max-w-none'>
+              <Content />
             </article>
 
             <!-- Post Navigation -->
