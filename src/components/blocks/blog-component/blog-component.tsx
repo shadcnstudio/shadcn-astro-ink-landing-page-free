@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { SearchIcon, ArrowRightIcon, CalendarDaysIcon } from 'lucide-react'
 
@@ -110,6 +110,31 @@ const Blog = ({ blogData = [] }: BlogProps) => {
   // Dynamically generate categories from the available data
   const uniqueCategories = [...new Set(nonFeaturedPosts.map(post => post.category))]
   const categories = ['All', ...uniqueCategories.sort()]
+
+  // Handle hash change to automatically switch tabs
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash
+
+      if (hash.startsWith('#category-')) {
+        const category = hash.replace('#category-', '')
+
+        if (categories.includes(category)) {
+          setSelectedTab(category)
+        }
+      }
+    }
+
+    // Check hash on initial load
+    handleHashChange()
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange)
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange)
+    }
+  }, [categories])
 
   const handleTabChange = (tab: string) => {
     setSelectedTab(tab)
