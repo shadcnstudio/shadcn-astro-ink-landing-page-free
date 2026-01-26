@@ -16,36 +16,42 @@ export default defineConfig({
       serialize(item) {
         // Homepage - highest priority
         if (item.url === 'http://localhost:4321/') {
+          // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'daily'
           item.priority = 1.0
         }
 
         // Blog listing pages - high priority
         else if (item.url.includes('/blog') && !item.url.includes('/blog/')) {
+          // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'daily'
           item.priority = 0.9
         }
 
         // Individual blog posts - medium-high priority
         else if (item.url.includes('/blog/')) {
+          // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'weekly'
           item.priority = 0.8
         }
 
         // Tag/category pages - medium priority
         else if (item.url.includes('/tags/') || item.url.includes('/categories/')) {
+          // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'weekly'
           item.priority = 0.7
         }
 
         // Static pages - medium-low priority
         else if (item.url.includes('/login') || item.url.includes('/register')) {
+          // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'monthly'
           item.priority = 0.5
         }
 
         // All other pages
         else {
+          // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'weekly'
           item.priority = 0.6
         }

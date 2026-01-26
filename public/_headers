@@ -64,9 +64,6 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 
 # Image assets in public folder
-/imaegs/**/*.jpg
-  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
-
 /images/**/*.jpg
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /images/**/*.png
