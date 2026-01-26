@@ -58,7 +58,13 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
             <div className='flex items-center justify-between gap-1.5'>
               <div className='text-muted-foreground flex items-center gap-1.5'>
                 <CalendarDaysIcon className='size-6' />
-                <p className='font-medium'>{post.pubDate}</p>
+                <p className='font-medium'>
+                  {new Date(post.pubDate ?? '').toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: '2-digit'
+                  })}
+                </p>
               </div>
               <Badge
                 className='bg-primary/10 text-primary badge cursor-pointer rounded-full border-0 text-sm'
