@@ -107,7 +107,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
         <div className='flex gap-3'>
           <ThemeToggle />
           <Button variant='outline' className='max-sm:hidden' asChild>
-            <a href='/contact'>Get in Touch</a>
+            <a href='/contact-us'>Get in Touch</a>
           </Button>
 
           {/* Navigation for small screens */}
@@ -115,7 +115,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant='outline' size='icon' className='sm:hidden' asChild>
-                  <a href='/contact'>
+                  <a href='/contact-us'>
                     <MailIcon />
                     <span className='sr-only'>Get in Touch</span>
                   </a>

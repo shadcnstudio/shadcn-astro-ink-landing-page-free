@@ -4,6 +4,12 @@
 
 All notable changes to this template will be documented in this file
 
+## v1.1.0 (2026-01-30)
+
+### Added
+
+- Contact Us Page
+
 ## v1.0.0 (2026-01-23)
 
 ### Added
