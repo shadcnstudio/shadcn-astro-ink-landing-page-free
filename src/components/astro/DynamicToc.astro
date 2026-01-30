@@ -19,6 +19,8 @@ interface TocItem {
 const groupedHeadings: TocItem[] = []
 let currentH2: TocItem | null = null
 
+let activeId = ''
+
 tocHeadings.forEach(heading => {
   if (heading.depth === 2) {
     currentH2 = {
@@ -49,9 +51,11 @@ tocHeadings.forEach(heading => {
             <li>
               <a
                 href={`#${item.slug}`}
-                class='text-muted-foreground hover:text-foreground toc-link flex items-start gap-2 text-left transition-colors'
+                class={`toc-link flex items-start gap-2 text-left transition-colors ${activeId === item.slug ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
               >
-                <span class='bg-primary/40 mt-2.5 inline-block h-0.5 w-3 shrink-0' />
+                <span
+                  class={`bg-primary/40 mt-2.5 inline-block h-0.5 w-3 shrink-0 transition-colors ${activeId === item.slug ? 'bg-primary' : 'bg-primary/40'}`}
+                />
                 <span>{item.text}</span>
               </a>
 
@@ -61,9 +65,11 @@ tocHeadings.forEach(heading => {
                     <li>
                       <a
                         href={`#${child.slug}`}
-                        class='text-muted-foreground hover:text-foreground toc-link flex items-start gap-2 text-left transition-colors'
+                        class={`toc-link flex items-start gap-2 text-left transition-colors ${activeId === child.slug ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
                       >
-                        <span class='bg-primary/40 mt-2.5 inline-block h-0.5 w-3 shrink-0' />
+                        <span
+                          class={`bg-primary/40 mt-2.5 inline-block h-0.5 w-3 shrink-0 transition-colors ${activeId === child.slug ? 'bg-primary' : 'bg-primary/40'}`}
+                        />
                         <span>{child.text}</span>
                       </a>
                     </li>
@@ -79,10 +85,13 @@ tocHeadings.forEach(heading => {
 }
 
 <script>
-  // Smooth scroll behavior
+  // Smooth scroll behavior and active link highlighting
   document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('.toc-link')
+    const sections = document.querySelectorAll('h2, h3')
+    let activeId = ''
 
+    // Add click event for smooth scrolling
     links.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault()
@@ -91,9 +100,46 @@ tocHeadings.forEach(heading => {
           const target = document.querySelector(href)
           if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            activeId = href.substring(1)
+            updateActiveLink()
           }
         }
       })
     })
+
+    // Highlight active link based on scroll position
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activeId = entry.target.id
+          updateActiveLink()
+        }
+      })
+    }
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px', // Adjust as needed
+      threshold: 0
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+    sections.forEach(section => {
+      observer.observe(section)
+    })
+
+    const updateActiveLink = () => {
+      links.forEach(link => {
+        const linkHref = link.getAttribute('href')
+        if (linkHref === `#${activeId}`) {
+          link.classList.add('font-medium', 'text-foreground')
+          link.classList.remove('text-muted-foreground')
+        } else {
+          link.classList.remove('font-medium', 'text-foreground')
+          link.classList.add('text-muted-foreground')
+        }
+      })
+    }
   })
 </script>

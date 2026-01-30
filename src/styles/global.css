@@ -193,7 +193,7 @@
     @apply text-foreground mt-4 mb-2 scroll-mt-23 text-base font-medium;
   }
   p {
-    @apply text-muted-foreground mb-4 text-xl;
+    @apply text-muted-foreground mb-4;
   }
   a {
     @apply text-primary font-medium no-underline transition-colors hover:underline;
@@ -208,7 +208,7 @@
     @apply mb-4 list-inside list-disc space-y-2 pl-2;
   }
   li {
-    @apply text-muted-foreground text-xl;
+    @apply text-muted-foreground;
   }
   ol {
     @apply mb-6 list-decimal space-y-4 pl-6;

@@ -50,7 +50,7 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
                   <div className='flex flex-col justify-center gap-3 p-6'>
                     <div className='flex items-center gap-1.5 py-1'>
                       <div className='text-muted-foreground flex grow items-center gap-1.5'>
-                        <CalendarDaysIcon className='size-6' />
+                        <CalendarDaysIcon className='size-5' />
                         <p className='font-medium'>{item.pubDate}</p>
                       </div>
                       <Badge
