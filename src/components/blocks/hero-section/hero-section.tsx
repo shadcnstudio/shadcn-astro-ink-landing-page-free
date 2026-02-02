@@ -32,7 +32,7 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
           </form>
         </div>
 
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
           {featuredPosts.map((item, index) => (
             <a href={`/blog/${item.slug}`} key={`${item.author}-${index}`} className='group'>
               <Card className='cursor-pointer py-0 shadow-none'>
@@ -51,7 +51,7 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
                     <div className='flex items-center gap-1.5 py-1'>
                       <div className='text-muted-foreground flex grow items-center gap-1.5'>
                         <CalendarDaysIcon className='size-5' />
-                        <p className='font-medium'>{item.pubDate}</p>
+                        <p>{item.pubDate}</p>
                       </div>
                       <Badge
                         className='bg-primary/10 text-primary cursor-pointer border-0 text-sm'

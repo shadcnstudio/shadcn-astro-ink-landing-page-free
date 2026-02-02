@@ -45,7 +45,7 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
         <a
           href={`/blog/${post.slug}`}
           key={post.id}
-          className='group h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300 hover:shadow-md'
+          className='group h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300'
           onClick={e => {
             const target = e.target as HTMLElement
 
@@ -55,7 +55,7 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
             }
           }}
         >
-          <Card>
+          <Card className='shadow-none'>
             <CardContent className='space-y-3.5'>
               <div className='mb-6 overflow-hidden rounded-lg sm:mb-12'>
                 <img
@@ -68,7 +68,7 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
               <div className='flex items-center justify-between gap-1.5'>
                 <div className='text-muted-foreground flex items-center gap-1.5'>
                   <CalendarDaysIcon className='size-5' />
-                  <p className='font-medium'>{post.pubDate}</p>
+                  <p>{post.pubDate}</p>
                 </div>
                 <Badge
                   className='bg-primary/10 text-primary badge rounded-full border-0 text-sm'

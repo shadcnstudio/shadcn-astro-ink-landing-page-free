@@ -118,8 +118,8 @@ const schema = {
               <Separator />
 
               <!-- Post Metadata -->
-              <div class='flex justify-between'>
-                <div class='flex items-center gap-3'>
+              <div class='flex flex-wrap justify-between gap-4'>
+                <div class='flex flex-wrap items-center gap-3'>
                   <AuthorMetadata client:load avatarUrl={entry.data.avatarUrl} author={entry.data.author} />
                   <div class='flex flex-col gap-1'>
                     <span class='text-muted-foreground text-sm'>Written by</span>

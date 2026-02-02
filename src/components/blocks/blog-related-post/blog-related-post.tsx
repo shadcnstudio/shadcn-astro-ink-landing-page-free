@@ -39,9 +39,9 @@ const Blog = ({ relatedPosts }: { relatedPosts: BlogPost[] }) => {
             <a
               href={`/blog/${post.slug}`}
               key={post.id}
-              className='group h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300 hover:shadow-md'
+              className='group h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300'
             >
-              <Card>
+              <Card className='shadow-none'>
                 <CardContent className='space-y-3.5'>
                   <div className='mb-6 overflow-hidden rounded-lg sm:mb-12'>
                     <img
