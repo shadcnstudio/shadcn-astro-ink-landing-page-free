@@ -168,6 +168,19 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  button,
+  [data-slot='combobox-item'],
+  [data-slot='command-item'],
+  [data-slot='context-menu-item'],
+  [data-slot='context-menu-checkbox-item'],
+  [data-slot='context-menu-radio-item'],
+  [data-slot='dropdown-menu-item'],
+  [data-slot='dropdown-menu-checkbox-item'],
+  [data-slot='dropdown-menu-radio-item'],
+  [data-slot='select-item'] {
+    @apply cursor-pointer!;
+  }
 }
 
 .prose {

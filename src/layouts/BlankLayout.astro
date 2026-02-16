@@ -39,12 +39,20 @@ const seoProps = Astro.props as Props
           return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
         }
 
-        const theme = getTheme()
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark')
-        } else {
-          document.documentElement.classList.remove('dark')
+        const applyTheme = () => {
+          const theme = getTheme()
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark')
+          } else {
+            document.documentElement.classList.remove('dark')
+          }
         }
+
+        // Apply theme immediately on initial load
+        applyTheme()
+
+        // Re-apply theme on Astro page transitions
+        document.addEventListener('astro:page-load', applyTheme)
       })()
     </script>
     <style>
