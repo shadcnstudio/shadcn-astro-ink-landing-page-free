@@ -69,14 +69,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     build: {
       cssMinify: true,
-      minify: 'esbuild',
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom']
-          }
-        }
-      }
+      minify: 'esbuild'
     },
     ssr: {
       noExternal: ['@radix-ui/*']
