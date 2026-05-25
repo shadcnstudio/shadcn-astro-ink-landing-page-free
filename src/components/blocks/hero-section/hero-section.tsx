@@ -14,7 +14,7 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
       <div className='mx-auto flex h-full max-w-7xl flex-col gap-16 px-4 sm:px-6 lg:px-8'>
         {/* Hero Header */}
         <div className='flex max-w-4xl flex-col items-center gap-4 self-center text-center'>
-          <Badge variant='outline' className='text-sm font-normal'>
+          <Badge variant='outline' className='h-auto text-sm font-normal'>
             Trusted by 1,000,000+ professionals
           </Badge>
           <h1 className='text-3xl leading-[1.29167] font-semibold text-balance sm:text-4xl lg:text-5xl'>
@@ -25,8 +25,8 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
             frameworks.
           </p>
           <form className='gap-3 py-1 max-sm:w-full max-sm:space-y-2 sm:flex sm:flex-row md:w-sm'>
-            <Input type='email' placeholder='Your email' className='bg-background h-10 flex-1 text-base' />
-            <Button size='lg' className='text-base max-sm:w-full' asChild type='submit'>
+            <Input type='email' placeholder='Your email' className='bg-background h-10 flex-1 px-3 text-base' />
+            <Button size='lg' className='border-0 px-6 text-base max-sm:w-full' asChild type='submit'>
               <a href='#'>Subscribe</a>
             </Button>
           </form>
@@ -51,10 +51,10 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
                     <div className='flex items-center gap-1.5 py-1'>
                       <div className='text-muted-foreground flex grow items-center gap-1.5'>
                         <CalendarDaysIcon className='size-5' />
-                        <p>{item.pubDate}</p>
+                        <p className='text-base'>{item.pubDate}</p>
                       </div>
                       <Badge
-                        className='bg-primary/10 text-primary cursor-pointer border-0 text-sm'
+                        className='bg-primary/10 text-primary h-auto cursor-pointer border-0 text-sm'
                         onClick={e => {
                           e.preventDefault()
                           e.stopPropagation()
@@ -68,12 +68,12 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
                       <h3 className='text-xl font-medium'>{item.title}</h3>
                     </a>
 
-                    <p className='text-muted-foreground'>{item.description}</p>
+                    <p className='text-muted-foreground text-base'>{item.description}</p>
                     <div className='flex w-full items-center justify-between gap-1 py-1'>
                       <span className='cursor-pointer text-sm font-medium'>{item.author}</span>
                       <Button
                         size='icon'
-                        className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground border group-hover:border-transparent hover:border-transparent'
+                        className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground group-hover:border-primary hover:border-primary border-border border'
                         asChild
                       >
                         <a href={`/blog/${item.slug}`}>

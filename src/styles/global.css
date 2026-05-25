@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import "shadcn/tailwind.css";
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -228,13 +228,8 @@
 .input-size-lg {
   @apply size-10;
 }
-
-[data-slot="button"][data-size="lg"]:not(.px-6){
+[data-slot='button'][data-size='default']:not(.px-6) {
   @apply px-4;
-}
-
-[data-slot="button"][data-size="default"]:not(.px-6){
-  @apply px-3;
 }
 
 .prose {

@@ -144,7 +144,7 @@ const schema = {
                   <img
                     src={entry.data.imageUrl}
                     alt={entry.data.title}
-                    class='max-h-148 w-full rounded-xl'
+                    class='max-h-148 w-full rounded-xl max-md:rounded-md'
                     loading='lazy'
                   />
                 </div>
@@ -161,13 +161,13 @@ const schema = {
               {
                 previousPost ? (
                   <a href={`/blog/${previousPost.id}`}>
-                    <Button className='rounded-xl' variant='outline'>
+                    <Button variant='outline'>
                       <ChevronLeftIcon className='size-4' />
                       Previous Post
                     </Button>
                   </a>
                 ) : (
-                  <Button className='rounded-xl' variant='outline' disabled>
+                  <Button variant='outline' disabled>
                     <ChevronLeftIcon className='size-4' />
                     Previous Post
                   </Button>
@@ -178,7 +178,7 @@ const schema = {
                 nextPost ? (
                   <a class='ms-auto' href={`/blog/${nextPost.id}`}>
                     <Button
-                      className='rounded-xl bg-sky-600/10 text-sky-600 hover:bg-sky-600/20 focus-visible:ring-sky-600/20 dark:bg-sky-400/10 dark:text-sky-400 dark:hover:bg-sky-400/20 dark:focus-visible:ring-sky-400/40'
+                      className='bg-sky-600/10 text-sky-600 hover:bg-sky-600/20 focus-visible:ring-sky-600/20 dark:bg-sky-400/10 dark:text-sky-400 dark:hover:bg-sky-400/20 dark:focus-visible:ring-sky-400/40'
                       variant='outline'
                     >
                       Next Post
@@ -187,7 +187,7 @@ const schema = {
                   </a>
                 ) : (
                   <Button
-                    className='ml-auto rounded-xl bg-sky-600/10 text-sky-600 hover:bg-sky-600/20 focus-visible:ring-sky-600/20 dark:bg-sky-400/10 dark:text-sky-400 dark:hover:bg-sky-400/20 dark:focus-visible:ring-sky-400/40'
+                    className='ml-auto bg-sky-600/10 text-sky-600 hover:bg-sky-600/20 focus-visible:ring-sky-600/20 dark:bg-sky-400/10 dark:text-sky-400 dark:hover:bg-sky-400/20 dark:focus-visible:ring-sky-400/40'
                     variant='outline'
                     disabled
                   >

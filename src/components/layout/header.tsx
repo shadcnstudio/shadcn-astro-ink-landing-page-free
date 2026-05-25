@@ -115,7 +115,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
         {/* Actions */}
         <div className='flex gap-3'>
           <ThemeToggle />
-          <Button variant='outline' className='max-sm:hidden' asChild>
+          <Button variant='outline' className='px-4 max-sm:hidden' asChild>
             <a href='/contact-us'>Get in Touch</a>
           </Button>
 

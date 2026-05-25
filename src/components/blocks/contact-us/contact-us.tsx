@@ -13,7 +13,7 @@ const ContactUs = () => {
           </p>
         </div>
 
-        <Card className='border-none shadow-none'>
+        <Card className='shadow-none ring-0'>
           <CardContent className='grid gap-6 md:grid-cols-4 md:gap-12'>
             {/* Form Section */}
             <div className='md:col-span-2'>

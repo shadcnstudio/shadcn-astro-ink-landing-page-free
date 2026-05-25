@@ -24,7 +24,9 @@ const Blog = ({ relatedPosts }: { relatedPosts: BlogPost[] }) => {
       <div className='mx-auto max-w-7xl space-y-16 px-4 py-8 sm:px-6 lg:px-8'>
         {/* Header */}
         <div className='space-y-4'>
-          <Badge variant='outline'>Trending</Badge>
+          <Badge variant='outline' className='h-auto'>
+            Trending
+          </Badge>
 
           <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>Related Post</h2>
 
@@ -39,7 +41,7 @@ const Blog = ({ relatedPosts }: { relatedPosts: BlogPost[] }) => {
             <a
               href={`/blog/${post.slug}`}
               key={post.id}
-              className='group h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300'
+              className='group h-full cursor-pointer shadow-none transition-all duration-300'
             >
               <Card className='shadow-none'>
                 <CardContent className='space-y-3.5'>
@@ -54,17 +56,17 @@ const Blog = ({ relatedPosts }: { relatedPosts: BlogPost[] }) => {
                   <div className='flex items-center justify-between gap-1.5'>
                     <div className='text-muted-foreground flex items-center gap-1.5'>
                       <CalendarDaysIcon className='size-5' />
-                      <span>{post.pubDate}</span>
+                      <p className='text-base'>{post.pubDate}</p>
                     </div>
-                    <Badge className='bg-primary/10 text-primary border-0 text-sm'>{post.category}</Badge>
+                    <Badge className='bg-primary/10 text-primary h-auto border-0 text-sm'>{post.category}</Badge>
                   </div>
                   <h3 className='line-clamp-2 text-lg font-medium md:text-xl'>{post.title}</h3>
-                  <p className='text-muted-foreground line-clamp-2'>{post.description}</p>
+                  <p className='text-muted-foreground line-clamp-2 text-base'>{post.description}</p>
                   <div className='flex items-center justify-between'>
                     <span className='text-sm font-medium'>{post.author}</span>
                     <Button
                       size='icon'
-                      className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground border group-hover:border-transparent hover:border-transparent'
+                      className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground group-hover:border-primary hover:border-primary border-border border'
                     >
                       <ArrowRightIcon className='size-4 -rotate-45' />
                       <span className='sr-only'>Read more: {post.title}</span>

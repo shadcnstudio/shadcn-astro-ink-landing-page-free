@@ -45,7 +45,7 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
         <a
           href={`/blog/${post.slug}`}
           key={post.id}
-          className='group h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300'
+          className='group h-full cursor-pointer shadow-none transition-all duration-300'
           onClick={e => {
             const target = e.target as HTMLElement
 
@@ -68,10 +68,10 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
               <div className='flex items-center justify-between gap-1.5'>
                 <div className='text-muted-foreground flex items-center gap-1.5'>
                   <CalendarDaysIcon className='size-5' />
-                  <p>{post.pubDate}</p>
+                  <p className='text-base'>{post.pubDate}</p>
                 </div>
                 <Badge
-                  className='bg-primary/10 text-primary badge rounded-full border-0 text-sm'
+                  className='bg-primary/10 text-primary badge h-auto rounded-full border-0 text-sm'
                   onClick={e => {
                     e.preventDefault()
                     e.stopPropagation()
@@ -82,12 +82,12 @@ const BlogGrid = ({ posts, onCategoryClick }: { posts: BlogPost[]; onCategoryCli
                 </Badge>
               </div>
               <h3 className='line-clamp-2 text-lg font-medium md:text-xl'>{post.title}</h3>
-              <p className='text-muted-foreground line-clamp-2'>{post.description}</p>
+              <p className='text-muted-foreground line-clamp-2 text-base'>{post.description}</p>
               <div className='flex items-center justify-between'>
                 <span className='text-sm font-medium'>{post.author}</span>
                 <Button
                   size='icon'
-                  className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground border group-hover:border-transparent hover:border-transparent'
+                  className='group-hover:bg-primary! bg-background text-foreground hover:bg-primary! hover:text-primary-foreground group-hover:text-primary-foreground group-hover:border-primary hover:border-primary border-border border'
                 >
                   <ArrowRightIcon className='size-4 -rotate-45' />
                   <span className='sr-only'>Read more: {post.title}</span>
