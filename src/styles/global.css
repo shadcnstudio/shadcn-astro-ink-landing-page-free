@@ -134,18 +134,69 @@
     text-rendering: optimizeLegibility;
   }
 
-  button,
-  [data-slot='combobox-item'],
-  [data-slot='command-item'],
-  [data-slot='context-menu-item'],
-  [data-slot='context-menu-checkbox-item'],
-  [data-slot='context-menu-radio-item'],
-  [data-slot='dropdown-menu-item'],
-  [data-slot='dropdown-menu-checkbox-item'],
-  [data-slot='dropdown-menu-radio-item'],
-  [data-slot='select-item'] {
-    @apply cursor-pointer!;
+  /* For native button elements and elements with role="button", e.g., button, checkbox, radio, switch etc. */
+  button:not(:disabled),
+  [role='checkbox']:not(:disabled),
+  [role='radio']:not(:disabled),
+  [role='switch']:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
   }
+
+  /* For labels associated with form controls */
+  label[for],
+  label:has([role='checkbox']):not(:disabled),
+  label:has([role='radio']):not(:disabled),
+  label:has([role='switch']):not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* For slider component */
+  [role='slider']:not([data-disabled]),
+  [data-slot='slider-track']:not([data-disabled]),
+  [data-slot='slider-thumb']:not([data-disabled]) {
+    cursor: pointer;
+  }
+
+  /* For components with menuitems, e.g., dropdown, context menu, etc. */
+  [role='menuitem']:not(:disabled),
+  [role='menuitemcheckbox']:not(:disabled),
+  [role='menuitemradio']:not(:disabled) {
+    cursor: pointer !important;
+  }
+
+  /* For components with options, e.g., combobox, command, select etc. */
+  [role='option']:not(:disabled),
+  select[data-slot='native-select']:not(:disabled) {
+    cursor: pointer !important;
+  }
+
+  /* For number input spin buttons */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    cursor: pointer;
+  }
+}
+
+.input-default {
+  @apply h-9;
+}
+.input-lg {
+  @apply h-10;
+}
+.input-sm {
+  @apply h-8;
+}
+.input-size-lg {
+  @apply size-10;
+}
+
+[data-slot="button"][data-size="lg"]:not(.px-6){
+  @apply px-4;
+}
+
+[data-slot="button"][data-size="default"]:not(.px-6){
+  @apply px-3;
 }
 
 .prose {
