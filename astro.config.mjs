@@ -6,7 +6,7 @@ import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 
 export default defineConfig({
-  site: 'http://localhost:4321/',
+  site: process.env.SITE_URL || 'http://localhost:4321/',
   integrations: [
     react(),
     mdx(),
@@ -15,7 +15,7 @@ export default defineConfig({
       customPages: [],
       serialize(item) {
         // Homepage - highest priority
-        if (item.url === 'http://localhost:4321/') {
+        if (item.url.endsWith('/') && item.url.split('/').filter(Boolean).length === 0) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'daily'
           item.priority = 1.0
@@ -69,14 +69,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     build: {
       cssMinify: true,
-      minify: 'esbuild',
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom']
-          }
-        }
-      }
+      minify: 'esbuild'
     },
     ssr: {
       noExternal: ['@radix-ui/*']

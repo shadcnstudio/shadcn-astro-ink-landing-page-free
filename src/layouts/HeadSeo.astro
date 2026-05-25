@@ -182,4 +182,4 @@ const schemaData = schema || defaultSchema
 
 <!-- Structured Data (JSON-LD) -->
 {/* eslint-disable-next-line astro/no-set-html-directive */}
-<script type='application/ld+json' set:html={JSON.stringify(schemaData)} />
+<script is:inline type='application/ld+json' set:html={JSON.stringify(schemaData)} />
