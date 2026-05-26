@@ -153,13 +153,13 @@ const Blog = ({ blogData = [] }: BlogProps) => {
         <Tabs defaultValue='All' value={selectedTab} onValueChange={handleTabChange} className='gap-8 lg:gap-16'>
           <div className='flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center'>
             <ScrollArea className='bg-muted w-full rounded-lg sm:w-auto'>
-              <TabsList className='h-auto gap-1'>
+              <TabsList className='h-auto gap-1 group-data-horizontal/tabs:h-auto'>
                 {categories.map(category => (
                   <TabsTrigger
                     key={category}
                     value={category}
                     id={`category-${category}`}
-                    className='hover:bg-primary/10 cursor-pointer rounded-lg px-4 text-base'
+                    className='hover:bg-primary/10 cursor-pointer rounded-lg px-4 text-base group-data-horizontal/tabs:after:h-0'
                   >
                     {category}
                   </TabsTrigger>

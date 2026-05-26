@@ -14,7 +14,7 @@ const ContactForm = () => {
       <div className='space-y-2'>
         <Label htmlFor='username'>Your Name</Label>
         <div className='relative'>
-          <Input id='username' type='text' placeholder='Enter your name here...' className='peer h-10 pr-9 pl-3' />
+          <Input id='username' type='text' placeholder='Enter your name here...' className='peer input-lg pr-9 pl-3' />
           <div className='text-muted-foreground pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center pr-3 peer-disabled:opacity-50'>
             <UserIcon className='size-4' />
             <span className='sr-only'>Name</span>
@@ -26,7 +26,7 @@ const ContactForm = () => {
       <div className='space-y-2'>
         <Label htmlFor='email'>Your Email</Label>
         <div className='relative'>
-          <Input id='email' type='email' placeholder='Enter your email here...' className='peer h-10 px-3 pr-9' />
+          <Input id='email' type='email' placeholder='Enter your email here...' className='peer input-lg px-3 pr-9' />
           <div className='text-muted-foreground pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center pr-3 peer-disabled:opacity-50'>
             <MailIcon className='size-4' />
             <span className='sr-only'>Email</span>
@@ -42,7 +42,7 @@ const ContactForm = () => {
             id='subject'
             type='text'
             placeholder='Enter your phone number here...'
-            className='peer h-10 px-3 pr-9'
+            className='peer input-lg px-3 pr-9'
           />
           <div className='text-muted-foreground pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center pr-3 peer-disabled:opacity-50'>
             <PhoneIcon className='size-4' />
