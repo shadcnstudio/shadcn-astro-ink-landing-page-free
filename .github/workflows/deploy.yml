@@ -25,15 +25,9 @@ jobs:
           path: automation-scripts
 
       - name: 📦 Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
         with:
-          version: latest
-
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
+          version: 10
 
       - name: ⬇️ Install packages in automation-scripts dir
         working-directory: automation-scripts/astro
