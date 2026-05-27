@@ -141,6 +141,22 @@ tocHeadings.forEach(heading => {
         }
       })
     }
+
+    // Set initial active section on page load
+    const setInitialActive = () => {
+      if (sections.length > 0) {
+        const firstSection = sections[0]
+        activeId = firstSection.id
+        updateActiveLink()
+      }
+    }
+
+    // Wait a tick to ensure observer has fired, otherwise use first section
+    setTimeout(() => {
+      if (!activeId && sections.length > 0) {
+        setInitialActive()
+      }
+    }, 0)
   }
 
   document.addEventListener('DOMContentLoaded', initializeToc)

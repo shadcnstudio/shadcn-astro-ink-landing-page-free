@@ -40,8 +40,8 @@ const CTA = () => {
                         placeholder='Your email'
                         className='bg-background input-lg flex-1 px-3 text-base'
                       />
-                      <Button size='lg' className='text-base max-sm:w-full' asChild type='submit'>
-                        <a href='#'>Subscribe</a>
+                      <Button size='lg' className='text-base max-sm:w-full' type='submit'>
+                        Subscribe
                       </Button>
                     </form>
                   </div>
