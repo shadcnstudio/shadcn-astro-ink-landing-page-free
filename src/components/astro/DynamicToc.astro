@@ -1,4 +1,6 @@
 ---
+import { ScrollArea } from '@/components/ui/scroll-area'
+
 interface Props {
   headings?: { depth: number; slug: string; text: string }[]
 }
@@ -18,8 +20,6 @@ interface TocItem {
 
 const groupedHeadings: TocItem[] = []
 let currentH2: TocItem | null = null
-
-let activeId = ''
 
 tocHeadings.forEach(heading => {
   if (heading.depth === 2) {
@@ -45,51 +45,109 @@ tocHeadings.forEach(heading => {
   groupedHeadings.length > 0 && (
     <div class='sticky top-24'>
       <h3 class='text-foreground mb-3.5 font-medium'>On This Page</h3>
-      <nav>
-        <ul class='space-y-3'>
-          {groupedHeadings.map(item => (
-            <li>
-              <a
-                href={`#${item.slug}`}
-                class={`toc-link flex items-start gap-2 text-left transition-colors ${activeId === item.slug ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
-              >
-                <span
-                  class={`bg-primary/40 mt-2.5 inline-block h-0.5 w-3 shrink-0 transition-colors ${activeId === item.slug ? 'bg-primary' : 'bg-primary/40'}`}
-                />
-                <span>{item.text}</span>
-              </a>
+      <ScrollArea className='max-h-[calc(100vh-8rem)]'>
+        <nav>
+          <ul class='space-y-3'>
+            {groupedHeadings.map(item => (
+              <li>
+                <a
+                  href={`#${item.slug}`}
+                  class='toc-link text-muted-foreground hover:text-foreground flex items-start gap-2 text-left transition-colors'
+                  data-heading-link={item.slug}
+                  data-depth='0'
+                >
+                  <span
+                    class='toc-indicator bg-primary/40 mt-2.5 inline-block h-0.5 w-3 shrink-0 transition-colors'
+                    data-link={item.slug}
+                  />
+                  <span>{item.text}</span>
+                </a>
 
-              {item.children.length > 0 && (
-                <ul class='mt-3 ml-5 space-y-3'>
-                  {item.children.map(child => (
-                    <li>
-                      <a
-                        href={`#${child.slug}`}
-                        class={`toc-link flex items-start gap-2 text-left transition-colors ${activeId === child.slug ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
-                      >
-                        <span
-                          class={`bg-primary/40 mt-2.5 inline-block h-0.5 w-3 shrink-0 transition-colors ${activeId === child.slug ? 'bg-primary' : 'bg-primary/40'}`}
-                        />
-                        <span>{child.text}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
+                {item.children.length > 0 && (
+                  <ul class='mt-3 ml-5 space-y-3'>
+                    {item.children.map(child => (
+                      <li>
+                        <a
+                          href={`#${child.slug}`}
+                          class='toc-link text-muted-foreground hover:text-foreground flex items-start gap-2 text-left transition-colors'
+                          data-heading-link={child.slug}
+                          data-depth='1'
+                        >
+                          <span
+                            class='toc-indicator bg-primary/40 mt-2.5 inline-block h-0.5 w-3 shrink-0 transition-colors'
+                            data-link={child.slug}
+                          />
+                          <span>{child.text}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </ScrollArea>
     </div>
   )
 }
 
 <script>
-  // Smooth scroll behavior and active link highlighting
+  const HEADER_OFFSET = 110
+
   const initializeToc = () => {
-    const links = document.querySelectorAll('.toc-link')
-    const sections = document.querySelectorAll('h2, h3')
+    const links = document.querySelectorAll<HTMLAnchorElement>('.toc-link')
+    const sections = document.querySelectorAll<HTMLElement>('h2[id], h3[id]')
     let activeId = ''
+
+    const updateActiveLink = () => {
+      links.forEach(link => {
+        const linkHref = link.getAttribute('href')
+        const indicator = link.querySelector('.toc-indicator')
+
+        if (linkHref === `#${activeId}`) {
+          link.classList.add('font-medium', 'text-foreground')
+          link.classList.remove('text-muted-foreground')
+          if (indicator) {
+            indicator.classList.add('bg-primary')
+            indicator.classList.remove('bg-primary/40')
+          }
+        } else {
+          link.classList.remove('font-medium', 'text-foreground')
+          link.classList.add('text-muted-foreground')
+          if (indicator) {
+            indicator.classList.remove('bg-primary')
+            indicator.classList.add('bg-primary/40')
+          }
+        }
+      })
+    }
+
+    // Function to find active heading based on scroll position
+    const findActiveHeading = () => {
+      const scrollY = window.scrollY
+      let foundId = ''
+
+      // Find the last heading above the scroll position
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i]
+        const sectionTop = section.getBoundingClientRect().top + scrollY
+        if (sectionTop - HEADER_OFFSET <= scrollY) {
+          foundId = section.id
+          break
+        }
+      }
+
+      // If no heading found, use the first one
+      if (!foundId && sections.length > 0) {
+        foundId = sections[0].id
+      }
+
+      if (foundId !== activeId) {
+        activeId = foundId
+        updateActiveLink()
+      }
+    }
 
     // Add click event for smooth scrolling
     links.forEach(link => {
@@ -107,79 +165,18 @@ tocHeadings.forEach(heading => {
       })
     })
 
-    // Highlight active link based on scroll position
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          activeId = entry.target.id
-          updateActiveLink()
-        }
-      })
-    }
-
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -70% 0px', // Adjust as needed
-      threshold: 0
-    }
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions)
-
-    sections.forEach(section => {
-      observer.observe(section)
-    })
-
-    const updateActiveLink = () => {
-      links.forEach(link => {
-        const linkHref = link.getAttribute('href')
-        if (linkHref === `#${activeId}`) {
-          link.classList.add('font-medium', 'text-foreground')
-          link.classList.remove('text-muted-foreground')
-        } else {
-          link.classList.remove('font-medium', 'text-foreground')
-          link.classList.add('text-muted-foreground')
-        }
-      })
-    }
-
-    // Set initial active section on page load
-    const setInitialActive = () => {
-      if (sections.length > 0) {
-        const firstSection = sections[0]
-        activeId = firstSection.id
-        updateActiveLink()
-      }
-    }
-
-    // Wait a tick to ensure observer has fired, otherwise use first section
+    // Set initial active heading
     setTimeout(() => {
-      if (!activeId && sections.length > 0) {
-        setInitialActive()
-      }
-    }, 0)
-  }
+      findActiveHeading()
+    }, 50)
 
-  document.addEventListener('DOMContentLoaded', initializeToc)
-
-  // Reinitialize TOC on page navigation
-  if (import.meta.hot) {
-    import.meta.hot.on('astro:page-load', initializeToc)
-  }
-
-  // Use MutationObserver to detect DOM changes and reinitialize TOC
-  const observer = new MutationObserver(() => {
-    initializeToc()
-  })
-
-  observer.observe(document.body, { childList: true, subtree: true })
-
-  // Reinitialize TOC on URL change by monitoring location.href
-  let previousUrl = window.location.href
-  setInterval(() => {
-    const currentUrl = window.location.href
-    if (currentUrl !== previousUrl) {
-      previousUrl = currentUrl
-      initializeToc()
+    // Use scroll listener for more reliable heading detection
+    const scrollHandler = () => {
+      findActiveHeading()
     }
-  }, 500)
+
+    window.addEventListener('scroll', scrollHandler, { passive: true })
+  }
+
+  document.addEventListener('astro:page-load', initializeToc)
 </script>
